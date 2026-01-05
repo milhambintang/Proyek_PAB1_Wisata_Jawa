@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
-                childAspectRatio: 0.85,
+                childAspectRatio: 0.75,
               ),
               itemCount: provinsis[selectedProvinsiIndex].tempat_models.length,
               itemBuilder: (context, index) {
@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           // Gambar Utama dengan Tombol Favorit
           SizedBox(
-            height: 140,
+            height: 150,
             child: Stack(
               children: [
                 ClipRRect(
@@ -173,11 +173,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     topLeft: Radius.circular(12),
                     topRight: Radius.circular(12),
                   ),
-                  child: Image.network(
+                    child: Image.network(
                     tempat.gambarUtama,
                     fit: BoxFit.cover,
                     width: double.infinity,
-                    height: 140,
+                    height: 150,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
                         color: AppColors.surface,
