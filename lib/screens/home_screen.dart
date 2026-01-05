@@ -20,6 +20,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _currentIndex == 0
+          ? AppBar(
+              title: const Text(
+                "Wisata Jawa",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              backgroundColor: AppColors.primary,
+              elevation: 0,
+            )
+          : null,
       body: _buildScreens()[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -65,20 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildHomeContent() {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Wisata Jawa",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: AppColors.primary,
-        elevation: 0,
-      ),
-      body: Column(
+    // Return body-only widget (AppBar moved to main Scaffold)
+    return SafeArea(
+      child: Column(
         children: [
           // Provinsi Tabs
           Container(
@@ -132,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // Grid Wisata
           Expanded(
             child: GridView.builder(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.fromLTRB(16, 16, 16, 16 + kBottomNavigationBarHeight),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 12,
@@ -141,8 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               itemCount: provinsis[selectedProvinsiIndex].tempat_models.length,
               itemBuilder: (context, index) {
-                final tempat =
-                    provinsis[selectedProvinsiIndex].tempat_models[index];
+                final tempat = provinsis[selectedProvinsiIndex].tempat_models[index];
                 return _buildWisataCard(tempat);
               },
             ),
