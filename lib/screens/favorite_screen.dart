@@ -2,73 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:proyek_pab1_wisata_jawa/data/provinsi_data.dart';
 import 'package:proyek_pab1_wisata_jawa/utils/app_colors.dart';
 import 'package:proyek_pab1_wisata_jawa/models/tempat_models.dart';
-import 'package:proyek_pab1_wisata_jawa/screens/search_screen.dart';
-import 'package:proyek_pab1_wisata_jawa/screens/favorite_screen.dart';
-import 'package:proyek_pab1_wisata_jawa/screens/profile_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class FavoriteScreen extends StatefulWidget {
+  const FavoriteScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<FavoriteScreen> createState() => _FavoriteScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  int selectedProvinsiIndex = 0;
-  int _currentIndex = 0;
+class _FavoriteScreenState extends State<FavoriteScreen> {
+  List<TempatModels> _getFavorites() {
+    List<TempatModels> favorites = [];
+    for (var provinsi in provinsis) {
+      for (var tempat in provinsi.tempat_models) {
+        if (tempat.isFavorite) {
+          favorites.add(tempat);
+        }
+      }
+    }
+    return favorites;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _buildScreens()[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedItemColor: AppColors.primary,
-        unselectedItemColor: AppColors.hint,
-        elevation: 8,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Cari',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorit',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-        ],
-      ),
-    );
-  }
+    final favorites = _getFavorites();
 
-  List<Widget> _buildScreens() {
-    return [
-      _buildHomeContent(),
-      const SearchScreen(),
-      const FavoriteScreen(),
-      const ProfileScreen(),
-    ];
-  }
-
-  Widget _buildHomeContent() {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Wisata Jawa",
+          'Favorit Saya',
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -78,60 +40,38 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.primary,
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          // Provinsi Tabs
-          Container(
-            color: AppColors.primary.withOpacity(0.1),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(
-                  provinsis.length,
-                  (index) => InkWell(
-                    onTap: () {
-                      setState(() {
-                        selectedProvinsiIndex = index;
-                      });
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 12,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: selectedProvinsiIndex == index
-                                ? AppColors.primary
-                                : Colors.transparent,
-                            width: 3,
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        provinsis[index].name,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: selectedProvinsiIndex == index
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                          color: selectedProvinsiIndex == index
-                              ? AppColors.primary
-                              : AppColors.subtitle,
-                        ),
-                      ),
+      body: favorites.isEmpty
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.favorite_border,
+                    size: 80,
+                    color: AppColors.hint,
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Belum ada wisata favorit',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.title,
                     ),
                   ),
-                ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Tambahkan wisata ke favorit untuk melihatnya di sini',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.subtitle,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-
-          // Grid Wisata
-          Expanded(
-            child: GridView.builder(
+            )
+          : GridView.builder(
               padding: const EdgeInsets.all(16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -139,156 +79,139 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisSpacing: 12,
                 childAspectRatio: 0.85,
               ),
-              itemCount: provinsis[selectedProvinsiIndex].tempat_models.length,
+              itemCount: favorites.length,
               itemBuilder: (context, index) {
-                final tempat =
-                    provinsis[selectedProvinsiIndex].tempat_models[index];
-                return _buildWisataCard(tempat);
+                final tempat = favorites[index];
+                return _buildFavoriteCard(tempat);
               },
             ),
-          ),
-        ],
-      ),
     );
   }
 
-  Widget _buildWisataCard(TempatModels tempat) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      elevation: 4,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Gambar Utama dengan Tombol Favorit
-          SizedBox(
-            height: 140,
-            child: Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
-                  ),
-                  child: Image.network(
-                    tempat.gambarUtama,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: 140,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: AppColors.surface,
-                        child: const Center(
-                          child: Icon(Icons.image_not_supported),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        tempat.isFavorite = !tempat.isFavorite;
-                      });
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            tempat.isFavorite
-                                ? '${tempat.nama} ditambahkan ke favorit'
-                                : '${tempat.nama} dihapus dari favorit',
+  Widget _buildFavoriteCard(TempatModels tempat) {
+    return GestureDetector(
+      onTap: () => _showDetailDialog(tempat),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 4,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Gambar Utama dengan Badge Favorit
+            SizedBox(
+              height: 140,
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
+                    ),
+                    child: Image.network(
+                      tempat.gambarUtama,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: 140,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: AppColors.surface,
+                          child: const Center(
+                            child: Icon(Icons.image_not_supported),
                           ),
-                          duration: const Duration(seconds: 2),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    top: 8,
+                    right: 8,
                     child: Container(
                       padding: const EdgeInsets.all(6),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
+                        color: AppColors.error,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(
-                        tempat.isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: tempat.isFavorite ? AppColors.error : AppColors.hint,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // Informasi
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Nama Tempat
-                      Text(
-                        tempat.nama,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.title,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-
-                      // Deskripsi Singkat
-                      Text(
-                        tempat.deskripsi,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 11,
-                          color: AppColors.subtitle,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-
-                  // Tombol Lihat Detail
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _showDetailDialog(tempat);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
-                        padding: const EdgeInsets.symmetric(vertical: 6),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: const Text(
-                        'Lihat Detail',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
+                      child: const Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                        size: 16,
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+
+            // Informasi
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Nama Tempat
+                        Text(
+                          tempat.nama,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.title,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+
+                        // Deskripsi Singkat
+                        Text(
+                          tempat.deskripsi,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 11,
+                            color: AppColors.subtitle,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+
+                    // Tombol Hapus dari Favorit
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          setState(() {
+                            tempat.isFavorite = false;
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('${tempat.nama} dihapus dari favorit'),
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.delete, size: 16),
+                        label: const Text(
+                          'Hapus',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.error,
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -440,9 +363,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         // Fasilitas
                         _buildDetailRow(Icons.home, 'Fasilitas', tempat.fasilitas),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 16),
 
-                        // galeri gambar
+                        // Galeri Gambar
                         Text(
                           'Galeri Gambar',
                           style: const TextStyle(
