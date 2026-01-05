@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           // Gambar Utama dengan Tombol Favorit
           SizedBox(
-            height: 150,
+            height: 140,
             child: Stack(
               children: [
                 ClipRRect(
@@ -173,11 +173,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     topLeft: Radius.circular(12),
                     topRight: Radius.circular(12),
                   ),
-                    child: Image.network(
+                  child: Image.network(
                     tempat.gambarUtama,
                     fit: BoxFit.cover,
                     width: double.infinity,
-                    height: 150,
+                    height: 140,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
                         color: AppColors.surface,
