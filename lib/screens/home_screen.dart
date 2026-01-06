@@ -155,19 +155,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildWisataCard(TempatModels tempat) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      elevation: 4,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Gambar Utama dengan Tombol Favorit
-          SizedBox(
-            height: 140,
-            child: Stack(
-              children: [
+  return Card(
+    clipBehavior: Clip.antiAlias, // Tambahkan ini agar gambar tidak keluar border
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    elevation: 4,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Bagian Gambar (Tetap)
+        SizedBox(
+          height: 120, // Kurangi sedikit tingginya agar teks punya ruang
+          child: Stack(              children: [
                 ClipRRect(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(12),
@@ -224,76 +222,49 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-
-          // Informasi
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Nama Tempat
-                      Text(
-                        tempat.nama,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.title,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-
-                      // Deskripsi Singkat
-                      Text(
-                        tempat.deskripsi,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 11,
-                          color: AppColors.subtitle,
-                        ),
-                      ),
-                    ],
+        
+        // Bagian Informasi
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  tempat.nama,
+                  maxLines: 1, // Batasi 1 baris agar hemat ruang
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 2),
+                Expanded( // Gunakan Expanded agar deskripsi mengambil sisa ruang yang ada saja
+                  child: Text(
+                    tempat.deskripsi,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 10, color: Colors.grey),
                   ),
-                  const SizedBox(height: 8),
-
-                  // Tombol Lihat Detail
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _showDetailDialog(tempat);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
-                        padding: const EdgeInsets.symmetric(vertical: 6),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: const Text(
-                        'Lihat Detail',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
-                      ),
+                ),
+                // Tombol Lihat Detail
+                SizedBox(
+                  width: double.infinity,
+                  height: 30, // Tentukan tinggi tetap agar tidak overflow
+                  child: ElevatedButton(
+                    onPressed: () => _showDetailDialog(tempat),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.zero, // Minimalisir padding
                     ),
+                    child: const Text('Lihat Detail', style: TextStyle(fontSize: 11)),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
+}
 
   void _showDetailDialog(TempatModels tempat) {
     showModalBottomSheet(
@@ -421,6 +392,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 8),
                         Text(
                           tempat.deskripsi,
+                          textAlign: TextAlign.justify,
                           style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.subtitle,
@@ -429,7 +401,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 16),
 
                         // Alamat
-                        _buildDetailRow(Icons.location_on, 'Alamat', tempat.alamat),
+                        _buildDetailRow(Icons.location_on, 'Alamat', tempat.alamat, ),
                         const SizedBox(height: 12),
 
                         // Jam Buka

@@ -77,7 +77,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
-                childAspectRatio: 0.85,
+                childAspectRatio: 0.65,
               ),
               itemCount: favorites.length,
               itemBuilder: (context, index) {
@@ -88,54 +88,42 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     );
   }
 
-  Widget _buildFavoriteCard(TempatModels tempat) {
-    return GestureDetector(
-      onTap: () => _showDetailDialog(tempat),
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        elevation: 4,
+Widget _buildFavoriteCard(TempatModels tempat) {
+    return Card(
+      // Tambahkan clipBehavior agar gambar tetap di dalam radius
+      clipBehavior: Clip.antiAlias, 
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 4,
+      child: InkWell( // Gunakan InkWell agar ada efek sentuhan
+        onTap: () => _showDetailDialog(tempat),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Gambar Utama dengan Badge Favorit
+            // Gambar Utama (Tinggi dikurangi sedikit menjadi 120)
             SizedBox(
-              height: 140,
+              height: 120,
               child: Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
-                    ),
-                    child: Image.network(
-                      tempat.gambarUtama,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: 140,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: AppColors.surface,
-                          child: const Center(
-                            child: Icon(Icons.image_not_supported),
-                          ),
-                        );
-                      },
+                  Image.network(
+                    tempat.gambarUtama,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 120,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: AppColors.surface,
+                      child: const Center(child: Icon(Icons.image_not_supported)),
                     ),
                   ),
                   Positioned(
                     top: 8,
                     right: 8,
                     child: Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: AppColors.error,
+                      padding: const EdgeInsets.all(4),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(
-                        Icons.favorite,
-                        color: Colors.white,
-                        size: 16,
-                      ),
+                      child: const Icon(Icons.favorite, color: AppColors.error, size: 18),
                     ),
                   ),
                 ],
@@ -148,62 +136,52 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Nama Tempat
-                        Text(
-                          tempat.nama,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.title,
-                          ),
+                    Text(
+                      tempat.nama,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.title,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Expanded(
+                      child: Text(
+                        tempat.deskripsi,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: AppColors.subtitle,
                         ),
-                        const SizedBox(height: 4),
-
-                        // Deskripsi Singkat
-                        Text(
-                          tempat.deskripsi,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 11,
-                            color: AppColors.subtitle,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                     const SizedBox(height: 8),
-
-                    // Tombol Hapus dari Favorit
+                    // Tombol Hapus (Dibuat lebih ringkas)
                     SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton.icon(
+                      child: ElevatedButton(
                         onPressed: () {
                           setState(() {
                             tempat.isFavorite = false;
                           });
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('${tempat.nama} dihapus dari favorit'),
-                              duration: const Duration(seconds: 2),
-                            ),
+                            SnackBar(content: Text('${tempat.nama} dihapus')),
                           );
                         },
-                        icon: const Icon(Icons.delete, size: 16),
-                        label: const Text(
-                          'Hapus',
-                          style: TextStyle(fontSize: 12),
-                        ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.error,
-                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 0),
+                          minimumSize: const Size(0, 32), // Tinggi tombol tetap
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
+                        child: const Text('Hapus', style: TextStyle(fontSize: 12)),
                       ),
                     ),
                   ],
@@ -342,6 +320,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         const SizedBox(height: 8),
                         Text(
                           tempat.deskripsi,
+                          textAlign: TextAlign.justify,
                           style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.subtitle,
