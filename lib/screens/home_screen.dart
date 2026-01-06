@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: _currentIndex == 0
           ? AppBar(
               title: const Text(
-                "Wisata Jawa",
+                "Wisata Pulau Jawa",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,

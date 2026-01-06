@@ -144,7 +144,7 @@ final List<ProvinsiModels> provinsis = [
         hargaTiket:
             'Rp 35.000 untuk tiket masuk dasar. Bila ditambah transportasi “ontang-anting” naik ke area atas Rp 25.000 extra, total bisa sekitar Rp 60.000.Untuk pengunjung asing: sekitar Rp 81.000.',
         fasilitas:
-            ' Area parkir, spot foto (Skywalk Cantigi, dermaga ponton), transportasi internal (ontang-anting) ke area kawah, warung/oleh-oleh.',
+            'Area parkir, spot foto (Skywalk Cantigi, dermaga ponton), transportasi internal (ontang-anting) ke area kawah, warung/oleh-oleh.',
         gambarGaleri: [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBfM-YxqSE4fvNqgNT1qVCfYYcN2VZMgzNPA&s',
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ87cSaz_AGFL08aJaF1b0UkBiWIGeQbH3aBw&s',
@@ -184,7 +184,7 @@ final List<ProvinsiModels> provinsis = [
         hargaTiket:
             'Tidak ditemukan data lengkap spesifik dalam sumber yang saya cek untuk tahun terkini.',
         fasilitas:
-            ' Karena alam terbuka: trekking ringan/jalan kaki ke lokasi, spot foto alam; fasilitas mungkin terbatas (toilet/warung bisa ada, tetapi tidak semua rinci)',
+            'Karena alam terbuka: trekking ringan/jalan kaki ke lokasi, spot foto alam; fasilitas mungkin terbatas (toilet/warung bisa ada, tetapi tidak semua rinci)',
         gambarGaleri: [
           'https://assets.pikiran-rakyat.com/crop/0x0:0x0/720x0/webp/photo/2023/12/30/2052867852.jpg',
           'https://image.idntimes.com/post/20230327/25037563-144620779574200-6194223588300554240-n-fccb20d1ebcde7f1a610e12da6ee3b31-f856474213a3d00881a17a1fbf73f346.jpg',
@@ -258,70 +258,7 @@ final List<ProvinsiModels> provinsis = [
       ),
     ],
   ),
-  ProvinsiModels(
-    name: 'Jawa Timur',
-    tempat_models: [
-      TempatModels(
-        nama: 'Gunung Bromo',
-        deskripsi:
-            'Gunung Bromo adalah gunung berapi aktif yang berada di Taman Nasional Bromo Tengger Semeru, terkenal dengan panorama sunrise dari puncak Penanjakan, lautan pasir, padang savana, dan kawah yang menarik banyak wisatawan domestik dan mancanegara.',
-        gambarUtama:
-            'https://assets.promediateknologi.id/crop/0x256:1125x1130/750x500/webp/photo/p1/674/2023/09/21/IMG-20230921-WA0085-1954400350.jpg',
-        alamat:
-            'Kawasan Taman Nasional Bromo Tengger Semeru  Probolinggo / Malang, Jawa Timur.',
-        jamBuka:
-            'Kawasan dibuka, namun pengunjung dianjurkan membeli tiket online dan mengikuti kuota.',
-        hargaTiket:
-            'Wisatawan nusantara (hari kerja): Rp 54.000 per orang\n Hari libur/akhir pekan: Rp 78.000 per orang, \nWisatawan mancanegara: Rp 255.000 per orang . \nCatatan: ada tambahan tarif kendaraan/jeep (misalnya roda empat Rp 10.000)',
-        fasilitas:
-            'Loket tiket online, jalur kepuncak, jeep 4WD, area parkir, beberapa warung makan, spot sunrise, dan jalur hiking ringan.',
-        gambarGaleri: [
-          'https://apimice.kemenparekraf.go.id/event-daerah/public/676/3cd/917/6763cd9174641985422603.webp',
-          'https://images.ctfassets.net/dsbipkqphva2/4nQMgIDxyH06Cd9tKwyRzO/66d4a7ec5e7205e42af7337c25273883/mount-bromo-hiking-guide-pelago-2.jpg.webp?fm=webp&w=860',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6joCuVcz7JpdKl5RhjmdHr9K-233mZ_ZDTA&s',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMJ2omDCA2roBvcVbLl_u6g3Mp6k070vgDjg&s',
-        ],
-      ),
-      TempatModels(
-        nama: 'Jawa Timur Park 2 (Kota Batu)',
-        deskripsi:
-            'Jatim Park 2 adalah taman rekreasi dan edukasi di Kota Batu, Jawa Timur, yang menggabungkan kebun binatang modern (Batu Secret Zoo), museum satwa, dan berbagai wahana interaktif untuk keluarga dan anak-anak.',
-        gambarUtama:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNWNObd6MHb0XRp3XqiUZ1k69oF4dXPxC33g&s',
-        alamat: ' Jl. Raya Oro-Oro Ombo No. 9, Kota Batu, Jawa Timur.',
-        jamBuka: 'Sekitar pukul 08.30 – 16.30 WIB (untuk Jatim Park 2)',
-        hargaTiket: 'Mulai dari sekitar Rp 140.000 untuk tiket masuk dasar',
-        fasilitas:
-            'Area kebun binatang\nmuseum satwa\nwahana interaktif\narea parkir\nfood court\ntoilet\nmushola',
-        gambarGaleri: [
-          'https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/220/2025/06/05/jatimpark1-623216921.jpg',
-          'https://zjglidcehtsqqqhbdxyp.supabase.co/storage/v1/object/public/atourin/images/destination/batu/jawa-timur-park-2-profile1654443372.jpeg?x-image-process=image/resize,p_100,limit_1/imageslim',
-          'https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/232/2024/05/15/JTP2_en-Siradj-995954143.jpg',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWpALAEWS0gWKV32Oi40fDpzxdiNE6g4lfEA&s',
-        ],
-      ),
-      TempatModels(
-        nama: 'Pantai Lumbung (Tulungagung)',
-        deskripsi:
-            'Pantai Lumbung di Kabupaten Tulungagung disebut sebagai “surga tersembunyi” dengan pasir putih, batu karang besar, ombak yang tenang dan panorama senja yang indah — menjadi salah satu objek wisata alam terbaru yang populer di 2025.',
-        gambarUtama:
-            'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/ef/cb/1a/pantai-lumbung.jpg?w=900&h=500&s=1',
-        alamat:
-            'Kabupaten Tulungagung, Jawa Timur. (Alamat spesifik belum dicantumkan secara lengkap dalam sumber)',
-        jamBuka: 'Setiap hari: 07:00 - 18:00',
-        hargaTiket: 'Disebut hanya Rp 5.000 untuk tiket masuk pantai',
-        fasilitas:
-            'Pantai terbuka\nspot batu karang iko\ntempat santai senja\ncocok untuk piknik/bersantai—kemungkinan fasilitas dasar seperti parkir dan warung makanan ringan.',
-        gambarGaleri: [
-          'https://image.idntimes.com/post/20220329/fromandroid-22cca301f00204424318d97546b86044.jpg',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQakJVecOKK4l-lxgOOd9iTW3SvflbdwlrwWA&s',
-          'https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/p3/27/2024/01/18/Pantai-Watu-Lumbung-Gunung-Kidul-1279549627.jpg',
-          'https://static.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/p2/76/2023/10/17/Pantai-pacar-sc-Radar-TA-508635230.jpeg',
-        ],
-      ),
-    ],
-  ),
-  ProvinsiModels(
+    ProvinsiModels(
     name: 'Daerah Istimewa Yogyakarta (Yogyakarta)',
     tempat_models: [
       TempatModels(
@@ -381,6 +318,69 @@ final List<ProvinsiModels> provinsis = [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUp0d_D-I4o9Edj4B9LNDAdBnmBErQekIoAQ&s',
           'https://static.promediateknologi.id/crop/192x376:978x1079/0x0/webp/photo/p2/34/2023/11/12/Screenshot-62-2202001434.png',
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7mpxH3RGGI5qScM-uHJRwz8tgXkS1fAMs5A&s',
+        ],
+      ),
+    ],
+  ),
+  ProvinsiModels(
+    name: 'Jawa Timur',
+    tempat_models: [
+      TempatModels(
+        nama: 'Gunung Bromo',
+        deskripsi:
+            'Gunung Bromo adalah gunung berapi aktif yang berada di Taman Nasional Bromo Tengger Semeru, terkenal dengan panorama sunrise dari puncak Penanjakan, lautan pasir, padang savana, dan kawah yang menarik banyak wisatawan domestik dan mancanegara.',
+        gambarUtama:
+            'https://assets.promediateknologi.id/crop/0x256:1125x1130/750x500/webp/photo/p1/674/2023/09/21/IMG-20230921-WA0085-1954400350.jpg',
+        alamat:
+            'Kawasan Taman Nasional Bromo Tengger Semeru  Probolinggo / Malang, Jawa Timur.',
+        jamBuka:
+            'Kawasan dibuka, namun pengunjung dianjurkan membeli tiket online dan mengikuti kuota.',
+        hargaTiket:
+            'Wisatawan nusantara (hari kerja): Rp 54.000 per orang\n Hari libur/akhir pekan: Rp 78.000 per orang, \nWisatawan mancanegara: Rp 255.000 per orang . \nCatatan: ada tambahan tarif kendaraan/jeep (misalnya roda empat Rp 10.000)',
+        fasilitas:
+            'Loket tiket online, jalur kepuncak, jeep 4WD, area parkir, beberapa warung makan, spot sunrise, dan jalur hiking ringan.',
+        gambarGaleri: [
+          'https://apimice.kemenparekraf.go.id/event-daerah/public/676/3cd/917/6763cd9174641985422603.webp',
+          'https://images.ctfassets.net/dsbipkqphva2/4nQMgIDxyH06Cd9tKwyRzO/66d4a7ec5e7205e42af7337c25273883/mount-bromo-hiking-guide-pelago-2.jpg.webp?fm=webp&w=860',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6joCuVcz7JpdKl5RhjmdHr9K-233mZ_ZDTA&s',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMJ2omDCA2roBvcVbLl_u6g3Mp6k070vgDjg&s',
+        ],
+      ),
+      TempatModels(
+        nama: 'Jawa Timur Park 2 (Kota Batu)',
+        deskripsi:
+            'Jatim Park 2 adalah taman rekreasi dan edukasi di Kota Batu, Jawa Timur, yang menggabungkan kebun binatang modern (Batu Secret Zoo), museum satwa, dan berbagai wahana interaktif untuk keluarga dan anak-anak.',
+        gambarUtama:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNWNObd6MHb0XRp3XqiUZ1k69oF4dXPxC33g&s',
+        alamat: ' Jl. Raya Oro-Oro Ombo No. 9, Kota Batu, Jawa Timur.',
+        jamBuka: 'Sekitar pukul 08.30 – 16.30 WIB (untuk Jatim Park 2)',
+        hargaTiket: 'Mulai dari sekitar Rp 140.000 untuk tiket masuk dasar',
+        fasilitas:
+            'Area kebun binatang\nmuseum satwa\nwahana interaktif\narea parkir\nfood court\ntoilet\nmushola',
+        gambarGaleri: [
+          'https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/220/2025/06/05/jatimpark1-623216921.jpg',
+          'https://zjglidcehtsqqqhbdxyp.supabase.co/storage/v1/object/public/atourin/images/destination/batu/jawa-timur-park-2-profile1654443372.jpeg?x-image-process=image/resize,p_100,limit_1/imageslim',
+          'https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/232/2024/05/15/JTP2_en-Siradj-995954143.jpg',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWpALAEWS0gWKV32Oi40fDpzxdiNE6g4lfEA&s',
+        ],
+      ),
+      TempatModels(
+        nama: 'Pantai Lumbung (Tulungagung)',
+        deskripsi:
+            'Pantai Lumbung di Kabupaten Tulungagung disebut sebagai “surga tersembunyi” dengan pasir putih, batu karang besar, ombak yang tenang dan panorama senja yang indah — menjadi salah satu objek wisata alam terbaru yang populer di 2025.',
+        gambarUtama:
+            'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/ef/cb/1a/pantai-lumbung.jpg?w=900&h=500&s=1',
+        alamat:
+            'Kabupaten Tulungagung, Jawa Timur. (Alamat spesifik belum dicantumkan secara lengkap dalam sumber)',
+        jamBuka: 'Setiap hari: 07:00 - 18:00',
+        hargaTiket: 'Disebut hanya Rp 5.000 untuk tiket masuk pantai',
+        fasilitas:
+            'Pantai terbuka\nspot batu karang iko\ntempat santai senja\ncocok untuk piknik/bersantai—kemungkinan fasilitas dasar seperti parkir dan warung makanan ringan.',
+        gambarGaleri: [
+          'https://image.idntimes.com/post/20220329/fromandroid-22cca301f00204424318d97546b86044.jpg',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQakJVecOKK4l-lxgOOd9iTW3SvflbdwlrwWA&s',
+          'https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/p3/27/2024/01/18/Pantai-Watu-Lumbung-Gunung-Kidul-1279549627.jpg',
+          'https://static.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/p2/76/2023/10/17/Pantai-pacar-sc-Radar-TA-508635230.jpeg',
         ],
       ),
     ],
