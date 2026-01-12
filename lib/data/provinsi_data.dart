@@ -131,7 +131,7 @@ final List<ProvinsiModels> provinsis = [
   ),
   ProvinsiModels(
     name: 'Jawa Barat',
-    tempat_models: [
+    tempat_models: [  
       TempatModels(
         nama: 'Kawah Putih Ciwidey (Bandung)',
         deskripsi:
