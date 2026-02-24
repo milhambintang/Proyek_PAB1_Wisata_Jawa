@@ -134,7 +134,7 @@ final List<ProvinsiModels> provinsis = [
     tempat_models: [  
       TempatModels(
         nama: 'Kawah Putih Ciwidey (Bandung)',
-        deskripsi:
+        deskripsi: 
             'Kawah Putih Ciwidey adalah kawah vulkanik dengan warna air yang khas (putih kehijauan), berada di ketinggian dan menyuguhkan pemandangan alam yang menyejukkan serta udara pegunungan.',
         gambarUtama:
             'https://awsimages.detik.net.id/community/media/visual/2022/05/03/kawasan-wisata-kawah-putih-2_169.jpeg?w=650',
